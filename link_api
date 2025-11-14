@@ -1,0 +1,34 @@
+Link API yang digunakan oleh aplikasi web ini
+
+
+1) NASA Near Earth Object (NEO) – Browse
+   - Base: https://api.nasa.gov
+   - Endpoint: https://api.nasa.gov/neo/rest/v1/neo/browse
+   - Parameter utama:
+     • api_key={API_KEY}
+     • page={NUMBER} (0-based)
+   - Contoh:
+     https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=YOUR_KEY&page=0
+
+2) NASA Images API – Pencarian Galeri
+   - Base: https://images-api.nasa.gov
+   - Endpoint: https://images-api.nasa.gov/search
+   - Parameter utama:
+     • q={kata_kunci}
+     • media_type=image,video,audio (bisa lebih dari satu, dipisah koma)
+     • year_start=YYYY (opsional)
+     • year_end=YYYY (opsional)
+     • page={NUMBER} (1-based)
+   - Contoh:
+     https://images-api.nasa.gov/search?q=apollo%2011&media_type=image,video&year_start=1960&year_end=1970&page=1
+
+3) NASA Images API – Asset Media per Item
+   - Base: https://images-api.nasa.gov
+   - Endpoint: https://images-api.nasa.gov/asset/{nasa_id}
+   - Kegunaan: mengambil daftar file media aktual (jpg/png/mp4/mp3, dll.) untuk sebuah item berdasarkan nasa_id.
+   - Contoh:
+     https://images-api.nasa.gov/asset/AS11-44-6550
+
+Catatan:
+- Semua endpoint NASA yang berada di domain api.nasa.gov membutuhkan parameter api_key.
+- Aplikasi ini menggunakan key yang disimpan di localStorage browser pengguna.

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eksplorasi Angkasa - APOD, Mars, & Asteroid</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 🌌 Splash Screen Loading -->
+    <div id="splash-screen" class="splash-screen">
+        <div class="splash-stars" id="splash-stars"></div>
+        <div class="splash-planet" id="splash-planet"></div>
+        
+        <div class="splash-content">
+            <div class="splash-logo">
+                <div class="logo-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="logo-text">Eksplorasi Angkasa</div>
+            </div>
+            
+            <div class="splash-loader">
+                <div class="circular-progress" id="circular-progress">
+                    <svg class="progress-ring" width="120" height="120">
+                        <circle class="progress-ring-circle" cx="60" cy="60" r="54" fill="transparent" stroke="rgba(122,162,255,0.2)" stroke-width="6"/>
+                        <circle class="progress-ring-fill" cx="60" cy="60" r="54" fill="transparent" stroke="#7aa2ff" stroke-width="6" stroke-linecap="round"/>
+                    </svg>
+                    <div class="progress-text" id="progress-text">0%</div>
+                </div>
+            </div>
+            
+            <div class="splash-message" id="splash-message">Memuat data dari NASA...</div>
+            <div class="splash-subtitle" id="splash-subtitle">Menyiapkan pengalaman luar angkasa</div>
+        </div>
+        
+        <div class="splash-particles" id="splash-particles"></div>
+    </div>
+
+
+    <div class="stars" aria-hidden="true"></div>
+    <div class="twinkling" aria-hidden="true"></div>
+
+    <!-- Floating Particles Background -->
+    <div id="navbar-particles" class="navbar-particles"></div>
+    
+    <header class="app-header cosmic-navbar">
+        <div class="navbar-container">
+            <div class="brand">
+                <div class="logo" aria-hidden="true">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="titles">
+                    <h1>Eksplorasi Angkasa</h1>
+                    <p>Funfact, Galeri NASA, & Asteroid NEO</p>
+                </div>
+            </div>
+            <nav class="nav" aria-label="Navigasi utama">
+                <a class="nav-btn active" href="#apod" data-route="apod" aria-controls="apod-section" aria-selected="true" role="tab">
+                    <span class="nav-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </span>
+                    <span class="nav-text">fun fact</span>
+                    <div class="nav-glow"></div>
+                </a>
+                <a class="nav-btn" href="#media" data-route="media" aria-controls="mars-section" aria-selected="false" role="tab">
+                    <span class="nav-icon">
+                        <i class="fas fa-satellite"></i>
+                    </span>
+                    <span class="nav-text">galeri nasa</span>
+                    <div class="nav-glow"></div>
+                </a>
+                <a class="nav-btn" href="#neo" data-route="neo" aria-controls="neo-section" aria-selected="false" role="tab">
+                    <span class="nav-icon">
+                        <i class="fas fa-meteor"></i>
+                    </span>
+                    <span class="nav-text">asteroid terdekat</span>
+                    <div class="nav-glow"></div>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- WELCOME SECTION -->
+        <section id="welcome-section" class="section" role="region" aria-label="Selamat Datang">
+            <div class="card fade-in" style="overflow:hidden; position:relative;">
+                <div class="welcome-hero">
+                    <div class="welcome-copy animate__animated animate__fadeInUp">
+                        <h2 class="welcome-title">
+                            <span class="section-icon" aria-hidden="true"><i class="fas fa-rocket"></i></span>
+                            <span id="welcomeTyped">Selamat Datang di Eksplorasi Angkasa</span>
+                        </h2>
+                        <div class="welcome-badges">
+                            <span class="badge"><i class="fas fa-user-graduate"></i>&nbsp;Zaki Affandi</span>
+                            <span class="badge"><i class="fas fa-university"></i>&nbsp;Telkom University</span>
+                            <span class="badge"><i class="fas fa-id-card"></i>&nbsp;NIM 102022580028</span>
+                        </div>
+                        <p class="muted" style="margin:8px 0 12px 0;">
+                            Tugas Assignment 1 Integrasi Aplikasi Enterprise bertema angkasa.
+                        </p>
+                        <p style="margin:0 0 12px 0;">
+                            funfact seputar angkasa, galeri media NASA, dan pantau asteroid dekat Bumi untuk belajar lebih jauh tentang luar angkasa.
+                        </p>
+                        <div class="actions" style="margin-top:12px; flex-wrap:wrap;">
+                            <a href="#apod" class="primary" aria-label="Mulai dari Fun Fact">
+                                <i class="fas fa-lightbulb" aria-hidden="true"></i>&nbsp;Jelajahi Fun Fact
+                            </a>
+                            <a href="#media" class="ghost" aria-label="Buka Space Gallery">
+                                <i class="fas fa-satellite" aria-hidden="true"></i>&nbsp;Lihat Space Gallery
+                            </a>
+                            <a href="#neo" class="ghost" aria-label="Cek Asteroid Terdekat">
+                                <i class="fas fa-meteor" aria-hidden="true"></i>&nbsp;Cek Asteroid Terdekat
+                            </a>
+                        </div>
+                    </div>
+                    <div class="welcome-visual" aria-hidden="true">
+                        <div class="planet deco-planet"></div>
+                        <div class="orbit orbit-1"></div>
+                        <div class="orbit orbit-2"></div>
+                        <div class="orbit orbit-3"></div>
+                        <div class="floating-icon i-1"><i class="fas fa-star"></i></div>
+                        <div class="floating-icon i-2"><i class="fas fa-meteor"></i></div>
+                        <div class="floating-icon i-3"><i class="fas fa-satellite"></i></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- APOD SECTION → Fun Fact (DONKI) -->
+        <section id="apod-section" class="section active" role="tabpanel" aria-labelledby="Fun Fact">
+            <div class="section-header">
+                <h2><span class="section-icon" aria-hidden="true"><i class="fas fa-globe-americas"></i></span> Fun Fact</h2>
+                <div class="actions">
+                    <button id="refreshApod" class="primary" aria-label="Tampilkan Gambar Acak">
+                        <span class="btn-text">Muat Fun Fact</span>
+                        <span class="btn-spinner" hidden></span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="apodLoader" class="loader" hidden>
+                <div class="spinner"></div>
+                <span>Memuat Fun Fact…</span>
+            </div>
+
+            <article id="apodCard" class="apod-card card fade-in" hidden>
+                <div class="media-wrapper" id="apodMediaWrapper" hidden></div>
+                <div class="card-content">
+                    <h3 id="apodTitle">Fun Fact</h3>
+                    <p id="apodExplanation"></p>
+                </div>
+            </article>
+        </section>
+
+        <!-- NASA MEDIA GALLERY SECTION (replacing Mars gallery) -->
+        <section id="mars-section" class="section" role="tabpanel" aria-labelledby="Galeri Media NASA">
+            <div class="section-header">
+                <h2><span class="section-icon" aria-hidden="true"><i class="fas fa-satellite"></i></span> Galeri Media NASA</h2>
+                <div class="filters media-filters" aria-label="Pencarian media NASA Images API">
+                    <label for="mediaQuery" class="sr-only">Kata kunci</label>
+                    <input type="text" id="mediaQuery" placeholder="Cari mis. apollo 11, galaxy" aria-label="Kata kunci">
+
+                    <div class="filter-group" role="group" aria-label="Rentang tanggal">
+                        <label for="dateRange" class="sr-only">Rentang Tanggal</label>
+                        <input type="text" id="dateRange" placeholder="Pilih rentang tanggal" readonly>
+                    </div>
+
+                    <div class="filter-group" role="group" aria-label="Filter tipe media">
+                        <label for="mediaTypeSelect" class="sr-only">Tipe Media</label>
+                        <div class="cosmic-dropdown" id="cosmicDropdown">
+                            <button class="dropdown-trigger" id="dropdownTrigger" aria-haspopup="listbox" aria-expanded="false">
+                                <span class="dropdown-text">Pilih Kategori</span>
+                                <span class="dropdown-arrow"><i class="fas fa-chevron-down"></i></span>
+                            </button>
+                            <div class="dropdown-menu" id="dropdownMenu" role="listbox" aria-hidden="true">
+                                <div class="dropdown-option" data-value="image" role="option" tabindex="0">
+                                    <span class="option-icon"><i class="fas fa-image"></i></span>
+                                    <span class="option-text">Gambar</span>
+                                </div>
+                                <div class="dropdown-option" data-value="video" role="option" tabindex="0">
+                                    <span class="option-icon"><i class="fas fa-video"></i></span>
+                                    <span class="option-text">Video</span>
+                                </div>
+                                <div class="dropdown-option" data-value="audio" role="option" tabindex="0">
+                                    <span class="option-icon"><i class="fas fa-volume-up"></i></span>
+                                    <span class="option-text">Audio</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="searchMedia" class="primary">
+                        <span class="btn-text">Cari</span>
+                        <span class="btn-spinner" hidden></span>
+                    </button>
+                </div>
+            </div>
+
+            <div id="marsLoader" class="loader" aria-live="polite" aria-busy="true" hidden>
+                <div class="spinner"></div>
+                <span>Memuat media…</span>
+            </div>
+
+            <div id="marsGrid" class="grid" aria-live="polite">
+                <!-- Kartu media NASA akan dimasukkan via JS -->
+            </div>
+
+            <div id="marsEmpty" class="empty muted" hidden>
+                Tidak ada hasil ditemukan untuk kriteria ini.
+            </div>
+
+            <div class="filters" aria-label="Paginasi hasil">
+                <span id="mediaTotal" class="muted" aria-live="polite"></span>
+                <div class="filter-group">
+                    <button id="mediaPrev" class="ghost" aria-label="Sebelumnya" disabled>Sebelumnya</button>
+                    <span id="mediaPageInfo" class="muted" aria-live="polite"></span>
+                    <button id="mediaNext" class="ghost" aria-label="Selanjutnya" disabled>Selanjutnya</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEO SECTION -->
+        <section id="neo-section" class="section" role="tabpanel" aria-labelledby="Asteroid (NEO)">
+            <div class="section-header">
+                <h2><span class="section-icon" aria-hidden="true"><i class="fas fa-meteor"></i></span> Asteroid Dekat Bumi (NEO)</h2>
+            </div>
+
+            <div id="neoLoader" class="loader" aria-live="polite" aria-busy="true" hidden>
+                <div class="spinner"></div>
+                <span>Memuat data asteroid…</span>
+            </div>
+
+            <div id="neoGrid" class="grid" aria-live="polite" hidden>
+                <!-- Grid lama disembunyikan, UI diganti dengan kanvas orbit -->
+            </div>
+
+            <!-- Orbit Canvas Container -->
+            <div class="neo-orbit-wrapper">
+                <canvas id="neo-orbit-canvas" aria-label="Visualisasi orbit asteroid" role="img"></canvas>
+                <!-- 3D overlay layer for procedural Three.js scene -->
+                <div id="neo-3d-layer" class="neo-3d-layer" aria-hidden="true">
+                    <canvas id="neo-three"></canvas>
+                </div>
+                <div id="neo-tooltip" class="neo-tooltip" hidden></div>
+            </div>
+
+            <!-- Asteroid Explanation -->
+            <section class="neo-info" aria-label="Penjelasan Asteroid">
+                <div class="neo-info-icon" aria-hidden="true">☄️</div>
+                <div class="neo-info-content">
+                    <h3>Apa itu Asteroid dan NEO?</h3>
+                    <p>
+                        Asteroid adalah benda langit berbatu dan logam berukuran kecil yang mengorbit Matahari.
+                        Kebanyakan berada di Sabuk Asteroid antara Mars dan Jupiter, namun sebagian memiliki
+                        orbit yang dapat mendekati Bumi. Objek-objek inilah yang disebut Near‑Earth Objects (NEO).
+                    </p>
+                    <p class="muted">
+                        Di bawah ini Anda dapat melihat daftar 10 asteroid terdekat berdasarkan data publik NASA.
+                        Informasi meliputi waktu pendekatan, kecepatan relatif, jarak lintasan terdekat,
+                        serta indikasi potensi bahayanya.
+                    </p>
+                </div>
+            </section>
+
+            <!-- NEO cards grid (10 items, 2 rows on desktop) -->
+            <div id="neoCards" class="grid" aria-live="polite"></div>
+            <div class="filters" id="neoCardsPager" aria-label="Paginasi daftar asteroid">
+                <div class="filter-group">
+                    <button id="neoCardsPrev" class="ghost" aria-label="Sebelumnya" disabled>Prev</button>
+                    <span id="neoCardsPageInfo" class="muted" aria-live="polite"></span>
+                    <button id="neoCardsNext" class="ghost" aria-label="Berikutnya" disabled>Next</button>
+                </div>
+            </div>
+
+            <div id="neoEmpty" class="empty muted" hidden>
+                Tidak ada data untuk kriteria ini.
+            </div>
+        </section>
+    </main>
+
+    <!-- API Key Validation Popup -->
+    <div id="apiKeyPopup" class="api-key-popup" role="dialog" aria-modal="true" aria-hidden="true" aria-label="API Key Validation">
+        <div class="popup-backdrop"></div>
+        <div class="popup-content" role="document">
+            <!-- Disclaimer State -->
+            <div id="disclaimerState" class="popup-state active">
+                <div class="popup-icon">🔑</div>
+                <h3 id="disclaimerTitle">API Key NASA Diperlukan</h3>
+                <p id="disclaimerMessage">Untuk menggunakan aplikasi ini dengan optimal, Anda memerlukan API key NASA yang valid.</p>
+                <div class="disclaimer-info">
+                    <p><strong>Mengapa perlu API key?</strong></p>
+                    <ul>
+                        <li>API key NASA memungkinkan akses penuh ke semua data</li>
+                        <li>Menghindari batasan kuota penggunaan</li>
+                        <li>Mendapatkan pengalaman yang lebih stabil</li>
+                    </ul>
+                    <p><strong>Cara mendapatkan API key:</strong></p>
+                    <ol>
+                        <li>Kunjungi <a href="https://api.nasa.gov" target="_blank" rel="noopener">https://api.nasa.gov</a></li>
+                        <li>Isi form pendaftaran dengan email Anda</li>
+                        <li>Dapatkan API key gratis secara instan</li>
+                    </ol>
+                </div>
+                <div class="popup-actions">
+                    <button id="showApiKeyForm" class="primary">Masukkan API Key</button>
+                </div>
+            </div>
+
+            <!-- Form Input State -->
+            <div id="formState" class="popup-state">
+                <div class="popup-icon">🔐</div>
+                <h3>Masukkan API Key NASA</h3>
+                <p>Silakan masukkan API key NASA Anda yang valid:</p>
+                
+                <form id="apiKeyForm" class="api-key-form">
+                    <div class="form-group">
+                        <label for="apiKeyInput" class="form-label">API Key NASA</label>
+                        <input 
+                            type="text" 
+                            id="apiKeyInput" 
+                            class="form-input" 
+                            placeholder="Masukkan API key NASA Anda..."
+                            autocomplete="off"
+                            spellcheck="false"
+                        >
+                        <div id="apiKeyError" class="form-error" hidden></div>
+                    </div>
+                    
+                    <div class="form-help">
+                        <p>💡 <strong>Tips:</strong></p>
+                        <ul>
+                            <li>API key NASA gratis dan mudah didapat</li>
+                            <li>Daftar di <a href="https://api.nasa.gov" target="_blank" rel="noopener">api.nasa.gov</a></li>
+                            <li>API key akan disimpan secara lokal di browser Anda</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="popup-actions">
+                        <button type="submit" id="saveApiKey" class="primary" disabled>
+                            <span class="btn-text">Simpan API Key</span>
+                            <span class="btn-spinner" hidden></span>
+                        </button>
+                        <button type="button" id="backToDisclaimer" class="ghost">Kembali</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Detail -->
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Detail Foto">
+        <div class="modal-backdrop" data-close></div>
+        <div class="modal-content" role="document">
+            <button class="close" aria-label="Tutup" data-close>&times;</button>
+            <div class="modal-media" id="modalMedia"></div>
+            <div class="modal-info">
+                <h3 id="modalTitle"></h3>
+                <p id="modalDescription" class="muted" style="margin:8px 0 0 0;"></p>
+                <p id="modalDateCreated" class="muted" style="margin:6px 0 12px 0;"></p>
+                <ul class="details" id="roverDetails">
+                    <li><strong>Rover:</strong> <span id="modalRover"></span></li>
+                    <li><strong>Kamera:</strong> <span id="modalCamera"></span></li>
+                    <li><strong>Tanggal (Earth):</strong> <span id="modalDate"></span></li>
+                    <li><strong>Status Rover:</strong> <span id="modalStatus"></span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer class="app-footer">
+        <p>Sumber data: NASA APOD, Mars Rover Photos, & NEO (Asteroids) API</p>
+        <p>Tip: Anda bisa langsung pakai tanpa mengisi API key. Default sudah terisi.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
+    <!-- Model Viewer (optional future use for GLB icons) -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+    <!-- Lightweight 3D-ish renderer for simple shapes (no install) -->
+    <script src="https://cdn.jsdelivr.net/npm/zdog@1/dist/zdog.dist.min.js" defer></script>
+    <!-- Three.js for procedural 3D (no textures) -->
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js" defer></script>
+    <script src="script.js" defer></script>
+</body>
+</html>
+
+
